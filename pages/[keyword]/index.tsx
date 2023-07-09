@@ -3,7 +3,7 @@ import useObserver from '@/hooks/useObserver';
 import { Book } from '@/types/bookInfo';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
 import { searchBooks as SearchAPI } from '@/pages/api/index';
 
@@ -18,10 +18,6 @@ const BookListWrapper = styled.div`
 function BookList(){
   const params = useSearchParams();
   const bottom = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    console.log('params', params.get('keyword'));
-  },[params.get('keyword')])
 
   const { data, fetchNextPage, status}  = useInfiniteQuery(
     ['getList',  params.get('keyword')],
