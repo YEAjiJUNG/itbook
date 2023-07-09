@@ -18,7 +18,6 @@ const Home: NextPage = () => {
       <SearchInput />
     </HomeWrapper>
   )
-
 }
 
 export default Home

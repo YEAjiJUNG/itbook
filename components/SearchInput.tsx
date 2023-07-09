@@ -5,11 +5,13 @@ const SearchInputWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  
   form{
-    padding: 10px 0 10px 12px;
     width: 100%;
     line-height:12px;
+    display: flex;
+    button{
+      width: 50px;
+    }
     input{
       width: 100%;
       background-color: transparent;
@@ -18,7 +20,7 @@ const SearchInputWrapper = styled.div`
       padding: 5px;
       color: black;
       &::placeholder{
-        color: rgba(255, 255, 255, 0.5);
+        color: rgba(0,0,0,0.5);
       }
       &:focus{
         outline: none;

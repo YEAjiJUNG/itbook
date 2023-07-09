@@ -1,9 +1,5 @@
-import bookItem from '@/components/BookItem';
 import { BookDetailType } from '@/types/bookInfo';
-import { dehydrate, useQuery } from '@tanstack/react-query';
-import { GetServerSideProps, GetServerSidePropsContext } from 'next';
-import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { GetServerSidePropsContext } from 'next';
 import styled from 'styled-components';
 import { searchBooks as SearchAPI } from '@/pages/api';
 
@@ -91,61 +87,34 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
 
 function BookDetail({bookInfo}: IProps){
-  // const params = useSearchParams();
-
-  // const [id, setId] = useState('');
-
-  // useEffect(() => {
-  //   setId(params.get('id'));
-  // },[params.get('id')])
-
-  // const {data: bookInfo} = useQuery(['bookInfo', id], () => SearchAPI.getBookItem(id),{ staleTime: 2000 })
-
-  // const res = async () => {
-  //   return await SearchAPI.getBookItem(params.get('id'));
-  //   // The return value is *not* serialized
-  //   // You can return Date, Map, Set, etc.
-  // }
-  //
-  // useEffect(() => {
-  //   if(!bookInfo) return;
-  // },[bookInfo])
-
-
-
-  // const { data } = useQuery(['info'], () => SearchAPI.getBookItem(params.get('id')));
-  // useEffect(() => {
-  //   console.log('book', data);
-  // },[data])
   return (
     <BookDetailWrapper>{
       bookInfo && (
         <>
           <div className="detail">
-          <div className="img-holder">
-            <img src={bookInfo.image} alt="book-img"/>
+            <div className="img-holder">
+              <img src={bookInfo.image} alt="book-img"/>
+            </div>
+            <div className="info">
+              <div className="title-holder">
+                <div className="title">{bookInfo.title}</div>
+                <div className="sub-title">{bookInfo.subtitle}</div>
+              </div>
+              <div className="sub-info">
+                <div className="authors">{bookInfo.authors}</div>
+                <div className="divider"/>
+                <div className="publisher">{bookInfo.publisher}</div>
+              </div>
+              <div className="price-rate-holder">
+                <div className="price">{`price: ${bookInfo.price}`}</div>
+                <div className="rate">{bookInfo.rating === '0' ? '' : bookInfo.rating}</div>
+              </div>
+            </div>
           </div>
-          <div className="info">
-            <div className="title-holder">
-              <div className="title">{bookInfo.title}</div>
-              <div className="sub-title">{bookInfo.subtitle}</div>
-            </div>
-            <div className="sub-info">
-              <div className="authors">{bookInfo.authors}</div>
-              <div className="divider"/>
-              <div className="publisher">{bookInfo.publisher}</div>
-            </div>
-            <div className="price-rate-holder">
-              <div className="price">{`price: ${bookInfo.price}`}</div>
-              <div className="rate">{bookInfo.rating === '0' ? '' : bookInfo.rating}</div>
-            </div>
-          </div>
-        </div>
-        <div className="desc">{bookInfo.desc}</div>
+          <div className="desc">{bookInfo.desc}</div>
         </>
       )
     }
-
     </BookDetailWrapper>
   )
 }

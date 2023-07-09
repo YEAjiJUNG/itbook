@@ -48,6 +48,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html >
+        <Head />
         <script dangerouslySetInnerHTML={{ __html: themeInitializerScript }} />
         <body>
           <Main />
