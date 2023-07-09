@@ -40,7 +40,7 @@ function BookItem({data}: IProps){
 
   return(
     <BookItemWrapper onClick={() => onClickHandler(data.isbn13)}>
-      <img src={data.image}/>
+      <img src={data.image} alt="data-img"/>
       <div className="title">{data.title}</div>
       <div className="sub-title">{data.subtitle}</div>
       <div className="price">{data.price}</div>
